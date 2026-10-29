@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Greeting Page{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Вертикальне меню (тільки для цієї сторінки) -->
+    <nav class="col-md-3 mb-4" aria-label="Меню користувачів">
+        <ul class="list-group side-menu">
+            <li class="list-group-item">
+                <a href="{{ url_for('users.greetings', name='John', age=30) }}">Greet John</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ url_for('users.greetings', name='Anna') }}">Greet Anna</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ url_for('users.admin') }}">Admin (редірект)</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Основний вміст -->
+    <section class="col-md-9">
+        <h2 class="display-5">Hello :)</h2>
+        <p class="h4">User: {{ name }}</p>
+        {% if age %}
+            <p class="h4 age-known">Age: {{ age }}</p>
+        {% else %}
+            <p class="h4 age-unknown">Age: Not provided</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
-
-app = Flask(__name__)
-app.secret_key = 'dev-secret-key'
+from flask import request, redirect, url_for, render_template, flash
+from . import app
 
 
 @app.route('/')
 def resume():
     return render_template('resume.html', title='Резюме')
+
+
+@app.route('/homepage')
+def home():
+    """View for the Home page of your website."""
+    agent = request.user_agent
+    return render_template('homepage.html', title='Головна', agent=agent)
 
 
 @app.route('/contacts', methods=['GET', 'POST'])
@@ -16,7 +21,3 @@ def contacts():
         flash(f'Дякуємо, {name}! Повідомлення отримано (це форма-заглушка, реальної відправки немає).', 'success')
         return redirect(url_for('contacts'))
     return render_template('contacts.html', title='Контакти')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
