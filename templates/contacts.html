@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <section class="col-md-5 mb-4">
+        <h2 class="h4">Мої контакти</h2>
+        <address>
+            <p class="mb-1"><strong>Email:</strong> <a href="mailto:illya@example.com">illya@example.com</a></p>
+            <p class="mb-1"><strong>Телефон:</strong> <a href="tel:+380000000000">+38 000 000 00 00</a></p>
+            <p class="mb-1"><strong>GitHub:</strong>
+                <a href="https://github.com/IllyaLytvynenko77" target="_blank" rel="noopener">IllyaLytvynenko77</a></p>
+            <p class="mb-0"><strong>Місто:</strong> Київ</p>
+        </address>
+    </section>
+
+    <section class="col-md-7">
+        <h2 class="h4">Надіслати повідомлення</h2>
+        <form method="post" action="{{ url_for('contacts') }}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Ім'я</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Повідомлення</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Надіслати</button>
+        </form>
+    </section>
+</div>
+{% endblock %}
