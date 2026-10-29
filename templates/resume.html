@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="about" class="resume-section">
+    <div class="row align-items-center">
+        <div class="col-md-3 text-center mb-3 mb-md-0">
+            <img src="{{ url_for('static', filename='images/photo.png') }}" alt="Фото Іллі Литвиненка"
+                 class="img-fluid rounded-circle profile-photo">
+        </div>
+        <div class="col-md-9">
+            <h2>Про себе</h2>
+            <p>Студент, який вивчає програмування та веброзробку. Цікавлюся Python і створенням вебзастосунків
+               на Flask. Люблю вчитися новому, працювати в команді та доводити задачі до кінця.</p>
+        </div>
+    </div>
+</section>
+
+<section id="education" class="resume-section">
+    <h2>Освіта</h2>
+    <ul class="list-unstyled">
+        <li><strong> Карпатський національний університет</strong>, бакалавр, комп'ютерні науки. 2023 – теперішній час</li>
+        <li><strong>Загальноосвітня школа</strong>, повна середня освіта. 2022 – 2024</li>
+    </ul>
+</section>
+
+<section id="skills" class="resume-section">
+    <h2>Навички</h2>
+    <ul>
+        <li>Командна робота та комунікація</li>
+        <li>Швидке навчання та самоорганізація</li>
+        <li>Робота з Git і GitHub</li>
+        <li>Англійська мова: рівень B1</li>
+    </ul>
+</section>
+
+<section id="technologies" class="resume-section">
+    <h2>Технології</h2>
+    <div class="d-flex flex-wrap gap-2">
+        {% for tech in ['Python', 'Flask', 'Jinja2', 'HTML', 'CSS', 'Bootstrap', 'Git', 'SQL'] %}
+            <span class="badge tech-badge">{{ tech }}</span>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="projects" class="resume-section">
+    <h2>Досвід роботи / Проекти</h2>
+    <article class="mb-3">
+        <h3 class="h5">Flask-додаток «Hello, world»</h3>
+        <p class="mb-0">Базовий вебзастосунок, розгорнутий на Render. Використано віртуальне середовище,
+           Git, gunicorn.</p>
+    </article>
+    <article>
+        <h3 class="h5">Сайт-резюме</h3>
+        <p class="mb-0">Сайт із двох сторінок на Flask: наслідування шаблонів Jinja2, Bootstrap,
+           статичні файли.</p>
+    </article>
+</section>
+{% endblock %}
