@@ -3,7 +3,7 @@
 {% block content %}
 <section class="panel login-panel">
     <h1>Вхід у систему</h1>
-    <form method="post" action="{{ url_for('login') }}">
+    <form method="post" action="{{ url_for('users.login') }}">
         <label for="username">Ім'я користувача</label>
         <input id="username" name="username" type="text" required>
 

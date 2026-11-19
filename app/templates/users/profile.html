@@ -7,16 +7,16 @@
     <p>Ви успішно автентифіковані. На цій сторінці можна керувати cookie та кольоровою схемою.</p>
 
     <div class="actions">
-        <form method="post" action="{{ url_for('theme', theme='light') }}">
+        <form method="post" action="{{ url_for('users.set_theme', theme='light') }}">
             <button type="submit">Світла тема</button>
         </form>
-        <form method="post" action="{{ url_for('theme', theme='dark') }}">
+        <form method="post" action="{{ url_for('users.set_theme', theme='dark') }}">
             <button type="submit">Темна тема</button>
         </form>
     </div>
 
     <h2>Додати cookie</h2>
-    <form class="form-grid" method="post" action="{{ url_for('add_cookie') }}">
+    <form class="form-grid" method="post" action="{{ url_for('users.add_cookie') }}">
         <div>
             <label for="key">Ключ</label>
             <input id="key" name="key" type="text" required>
@@ -33,13 +33,13 @@
     </form>
 
     <h2>Видалити cookie за ключем</h2>
-    <form class="inline-form" method="post" action="{{ url_for('delete_cookie') }}">
+    <form class="inline-form" method="post" action="{{ url_for('users.delete_cookie') }}">
         <input name="key" type="text" placeholder="Введіть ключ cookie" required>
         <button class="warning-button" type="submit">Видалити</button>
     </form>
 
     <h2>Видалити всі cookie</h2>
-    <form method="post" action="{{ url_for('delete_all_cookies') }}"
+    <form method="post" action="{{ url_for('users.delete_all_cookies') }}"
           onsubmit="return confirm('Видалити всі cookie цього сайту?');">
         <button class="danger-button" type="submit">Видалити всі cookie</button>
     </form>
@@ -60,7 +60,7 @@
         <p>Збережених cookie немає.</p>
     {% endif %}
 
-    <form method="post" action="{{ url_for('logout') }}" class="logout-form">
+    <form method="post" action="{{ url_for('users.logout') }}" class="logout-form">
         <button class="danger-button" type="submit">Вийти</button>
     </form>
 </section>
