@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+contact.log
+data/products.json
+products/static/uploads/*
+!products/static/uploads/.gitkeep
+!data/.gitkeep
+.pytest_cache/
