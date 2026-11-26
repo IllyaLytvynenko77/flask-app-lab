@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-5">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if product.image %}
+                <img src="{{ url_for('products.static', filename=product.image) }}" class="img-fluid rounded-start h-100 w-100" alt="{{ product.name }}" style="object-fit: cover; min-height: 280px;">
+            {% else %}
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center h-100" style="min-height: 280px;">
+                    <span>Зображення відсутнє</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <span class="badge bg-secondary">ID: {{ product.id }}</span>
+                </div>
+                <p><span class="badge bg-info text-dark">{{ category_map.get(product.category, product.category) }}</span></p>
+                <h4 class="text-primary fw-bold">{{ "%.2f"|format(product.price) }} грн</h4>
+                <hr>
+                <h6>Опис товару:</h6>
+                <p class="card-text" style="white-space: pre-line;">{{ product.content }}</p>
+                <hr>
+                <p class="text-muted mb-1">Кількість одиниць: <strong>{{ product.quantity }}</strong></p>
+                <p class="text-muted small">Дата й час створення: {{ product.created_at }}</p>
+
+                <div class="mt-4 d-flex gap-2">
+                    <a href="{{ url_for('products.list_products') }}" class="btn btn-secondary">← Назад до каталогу</a>
+                    <a href="{{ url_for('products.edit_product', id=product.id) }}" class="btn btn-warning">Редагувати</a>
+                    <form action="{{ url_for('products.delete_product', id=product.id) }}" method="POST" class="d-inline"
+                          onsubmit="return confirm('Ви дійсно бажаєте видалити цей товар?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-danger">Видалити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
