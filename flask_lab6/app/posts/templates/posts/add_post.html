@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "macros/form_macros.html" import render_field %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mb-5">
+    <div class="col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="card-title mb-4">{{ title }}</h2>
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    {{ render_field(form.title, placeholder="Введіть заголовок поста") }}
+                    {{ render_field(form.content, placeholder="Введіть текст поста") }}
+                    {{ render_field(form.is_active) }}
+                    {{ render_field(form.publish_date) }}
+                    {{ render_field(form.category) }}
+                    <div class="d-flex gap-2 mt-3">
+                        {{ form.submit(class="btn btn-primary") }}
+                        <a href="{{ url_for('posts.all_posts') }}" class="btn btn-secondary">Return to Posts</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
