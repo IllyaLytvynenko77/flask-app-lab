@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_wtf.csrf import CSRFProtect
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
 from app.config import config
@@ -20,6 +21,7 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
+csrf = CSRFProtect()
 
 
 def create_app(config_name="development"):
@@ -28,14 +30,20 @@ def create_app(config_name="development"):
 
     db.init_app(app)
     migrate.init_app(app, db)
+    csrf.init_app(app)
 
-    from app.products import products_bp
-    app.register_blueprint(products_bp, url_prefix="/products")
+    from app import models  # noqa: F401
+    from app.posts import models as post_models  # noqa: F401
 
-    from app.products import models  # noqa: F401
+    from app.posts import post_bp
+    app.register_blueprint(post_bp, url_prefix="/post")
 
-    @app.route("/")
+    @app.route("/", endpoint="home")
     def index():
-        return "Lab 7: SQLAlchemy Relationships & Migrations"
+        return render_template("index.html")
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return render_template("404.html"), 404
 
     return app

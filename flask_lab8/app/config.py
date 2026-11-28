@@ -2,8 +2,10 @@ import os
 
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY", "super-secret-key-lab7")
+    SECRET_KEY = os.environ.get("SECRET_KEY", "super-secret-key-lab8")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = os.environ.get("SQLALCHEMY_ECHO", "False").lower() == "true"
+    WTF_CSRF_ENABLED = True
 
 
 class DevelopmentConfig(Config):
@@ -14,6 +16,8 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    SQLALCHEMY_ECHO = False
+    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):

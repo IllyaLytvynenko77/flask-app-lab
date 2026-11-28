@@ -1,0 +1,28 @@
+.myclass {
+    background-color: #bbff00;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.post-card {
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.tag-badge {
+    display: inline-block;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}

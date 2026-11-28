@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Головна — Лабораторна робота №8{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <h1 class="display-6 fw-bold">Лабораторна робота №8: ORM. Зв'язки (1:N та M:N)</h1>
+    <p class="lead text-muted">Зв'язок One-to-Many (User → Post), Many-to-Many (Post ↔ Tag) та оптимізація SQL-запитів через joinedload і selectinload.</p>
+    <div class="mt-4 d-flex gap-3 flex-wrap">
+        <a href="{{ url_for('posts.all_posts') }}" class="btn btn-primary btn-lg">Переглянути пости (/post)</a>
+        <a href="{{ url_for('posts.create_post') }}" class="btn btn-success btn-lg">+ Створити пост (/post/create)</a>
+    </div>
+</div>
+{% endblock %}
